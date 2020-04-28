@@ -61,12 +61,12 @@ public class PlayerController : MonoBehaviour
             NotAllowedMove();
     }
 
-    void AllowedMove()
+    private void AllowedMove()
     {
         isIdle = true;
     }
 
-    void NotAllowedMove()
+    private void NotAllowedMove()
     {
         isIdle = false;
     }

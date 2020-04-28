@@ -59,15 +59,15 @@ public class AnimatorController : MonoBehaviour
                         }
 
                         //down
-                        if (currentSwipe.y < 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
-                        {
-                            gameObject.transform.rotation = Quaternion.Euler(270, 180, 0);
+                        //if (currentSwipe.y < 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
+                        //{
+                        //    gameObject.transform.rotation = Quaternion.Euler(270, 180, 0);
 
-                            PlayerController.Instance.upRotation = false;
-                            PlayerController.Instance.downRotation = true;
-                            PlayerController.Instance.rightRotation = false;
-                            PlayerController.Instance.leftRotation = false;
-                        }
+                        //    PlayerController.Instance.upRotation = false;
+                        //    PlayerController.Instance.downRotation = true;
+                        //    PlayerController.Instance.rightRotation = false;
+                        //    PlayerController.Instance.leftRotation = false;
+                        //}
 
                         //left
                         if (currentSwipe.x < 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)

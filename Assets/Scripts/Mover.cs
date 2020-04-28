@@ -60,6 +60,14 @@ public class Mover : MonoBehaviour
 
     }
 
+    void OnBecameVisible()
+    {
+        if (gameObject.tag == "train")
+        {
+            Debug.Log("VISIBLE ");
+        }
+    }
+
     void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")

@@ -121,6 +121,7 @@ public class Manager : MonoBehaviour
             GetRecord();
             recordDistance.gameObject.SetActive(true);
             setingsButton.SetActive(true);
+            startButton.SetActive(false);
             GameOverCheck = true;
             SaveCoins();
             UIGameOver();
