@@ -23,7 +23,7 @@ public class AnimatorController : MonoBehaviour
     {
         if (Input.touches.Length > 0)
         {
-            if (Manager.Instance.CanPlay())
+            if (Manager.Instance.CanPlay() && !Manager.Instance.gameOverCheck)
             {
                 Touch t = Input.GetTouch(0);
 
@@ -57,12 +57,7 @@ public class AnimatorController : MonoBehaviour
                         //down
                         if (currentSwipe.y < 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
                         {
-                            gameObject.transform.rotation = Quaternion.Euler(270, 180, 0);
-
-                            PlayerController.Instance.upRotation = false;
-                            PlayerController.Instance.downRotation = true;
-                            PlayerController.Instance.rightRotation = false;
-                            PlayerController.Instance.leftRotation = false;
+                            MovePlayerUp();
                         }
 
                         //left

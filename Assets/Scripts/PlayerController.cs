@@ -9,10 +9,13 @@ public class PlayerController : MonoBehaviour
     public float moveTime = 0.4f;
     public float colliderDistCheck = 1.1f;
     public bool isIdle = true;
+    Camera camera;
     public ParticleSystem particle = null;
     public GameObject chick = null;
     private Renderer renderer = null;
     bool isVisible = false;
+    private Plane[] planes;
+
 
     [HideInInspector]
     public bool downRotation, rightRotation, leftRotation, tapOnScreen, upRotation;
@@ -36,7 +39,9 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        camera = Camera.main;
         renderer = chick.GetComponent<Renderer>();
+        planes = GeometryUtility.CalculateFrustumPlanes(camera);
     }
 
     void LateUpdate()
@@ -49,6 +54,14 @@ public class PlayerController : MonoBehaviour
 
         CheckIfCanMove();
         IsVisible();
+
+        if (!GeometryUtility.TestPlanesAABB(planes, gameObject.GetComponent<Collider>().bounds))
+            GetHit();
+    }
+
+    void OnWillRenderObject()
+    {
+        Debug.Log("Visible");
     }
 
     public void CheckIfCanMove()

@@ -8,21 +8,9 @@ public class Mover : MonoBehaviour
     [HideInInspector]
     public bool parentOnTrigger = true;
     [HideInInspector]
-    public bool hitBoxOnTrigger = false;
-    [HideInInspector]
-    public bool goToLeftSide = false;
-    [HideInInspector]
-    public bool goToRightSide = false;
+    public bool hitBoxOnTrigger, goToLeftSide, goToRightSide = false;
 
     public GameObject moverObject = null;
-
-    private Renderer renderer = null;
-    private bool isVisible = false;
-
-    void Start()
-    {
-        renderer = moverObject.GetComponent<Renderer>();
-    }
 
     void Update()
     {

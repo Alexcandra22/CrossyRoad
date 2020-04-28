@@ -101,6 +101,7 @@ MonoBehaviour:
   moveTime: 0.2
   colliderDistCheck: 1
   isIdle: 1
+  camera: {fileID: 0}
   particle: {fileID: 810686509460636087}
   chick: {fileID: 6260854615594076432}
   downRotation: 0
