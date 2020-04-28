@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 428656}
   - component: {fileID: 3382530}
   - component: {fileID: 2336930}
+  - component: {fileID: 7872865405456974450}
+  - component: {fileID: 1049322001852061242}
   m_Layer: 0
   m_Name: log
   m_TagString: Untagged
@@ -79,6 +81,35 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!54 &7872865405456974450
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128792}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1049322001852061242
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128792}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.1168165, y: 0.50465536, z: 0.23453198}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &171626
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,9 +119,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 430040}
-  - component: {fileID: 6514636}
   - component: {fileID: 11437644}
-  - component: {fileID: -7768556171765456704}
   m_Layer: 0
   m_Name: logMedium
   m_TagString: logMedium
@@ -113,19 +142,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6514636
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 171626}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.6, y: 0.5, z: 0.5}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &11437644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,19 +161,3 @@ MonoBehaviour:
   goToLeftSide: 0
   goToRightSide: 0
   moverObject: {fileID: 128792}
---- !u!54 &-7768556171765456704
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 171626}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0

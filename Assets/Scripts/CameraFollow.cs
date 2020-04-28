@@ -12,14 +12,19 @@ public class CameraFollow : MonoBehaviour
     Vector3 depth = Vector3.zero;
     Vector3 pos = Vector3.zero;
 
-    void Update()
+    private void Start()
+    {
+        player = PlayerManager.Instance.GetPlayer();
+    }
+
+    private void Update()
     {
         if (!Manager.Instance.CanPlay())
             return;
 
         if (autoMove)
         {
-            depth = this.gameObject.transform.position += new Vector3(0, 0, speed * Time.deltaTime);
+            depth = gameObject.transform.position += new Vector3(0, 0, speed * Time.deltaTime);
             pos = Vector3.Lerp(gameObject.transform.position, player.transform.position + offset, Time.deltaTime);
             gameObject.transform.position = new Vector3(pos.x, offset.y, depth.z);
         }

@@ -23,79 +23,82 @@ public class AnimatorController : MonoBehaviour
     {
         if (Input.touches.Length > 0)
         {
-            Touch t = Input.GetTouch(0);
-
-            if (t.phase == TouchPhase.Began)
+            if (Manager.Instance.CanPlay())
             {
-                firstPressPos = t.position;
-            }
+                Touch t = Input.GetTouch(0);
 
-            if (t.phase == TouchPhase.Moved)
-            {
-                direction = t.position - firstPressPos;
-            }
-
-            if (t.phase == TouchPhase.Ended)
-            {
-                CheckTapOrSwipe();
-
-                if (!PlayerController.Instance.tapOnScreen)
+                if (t.phase == TouchPhase.Began)
                 {
-                    secondPressPos = t.position;
-                    currentSwipe = new Vector3(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
-                    currentSwipe.Normalize();
-
-                    //up
-                    if (currentSwipe.y > 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
-                    {
-                        gameObject.transform.rotation = Quaternion.Euler(270, 0, 0);
-
-                        PlayerController.Instance.upRotation = true;
-                        PlayerController.Instance.downRotation = false;
-                        PlayerController.Instance.rightRotation = false;
-                        PlayerController.Instance.leftRotation = false;
-                    }
-
-                    //down
-                    if (currentSwipe.y < 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
-                    {
-                        gameObject.transform.rotation = Quaternion.Euler(270, 180, 0);
-
-                        PlayerController.Instance.upRotation = false;
-                        PlayerController.Instance.downRotation = true;
-                        PlayerController.Instance.rightRotation = false;
-                        PlayerController.Instance.leftRotation = false;
-                    }
-
-                    //left
-                    if (currentSwipe.x < 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
-                    {
-                        gameObject.transform.rotation = Quaternion.Euler(270, -90, 0);
-
-                        PlayerController.Instance.upRotation = false;
-                        PlayerController.Instance.downRotation = false;
-                        PlayerController.Instance.rightRotation = false;
-                        PlayerController.Instance.leftRotation = true;
-                    }
-
-                    //right
-                    if (currentSwipe.x > 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
-                    {
-                        gameObject.transform.rotation = Quaternion.Euler(270, 90, 0);
-
-                        PlayerController.Instance.upRotation = false;
-                        PlayerController.Instance.downRotation = false;
-                        PlayerController.Instance.rightRotation = true;
-                        PlayerController.Instance.leftRotation = false;
-                    }
-                }
-                else
-                {
-                    if(PlayerController.Instance.isIdle)
-                        PlayerController.Instance.CanMove();
+                    firstPressPos = t.position;
                 }
 
-                direction = new Vector2(0f, 0f);
+                if (t.phase == TouchPhase.Moved)
+                {
+                    direction = t.position - firstPressPos;
+                }
+
+                if (t.phase == TouchPhase.Ended)
+                {
+                    CheckTapOrSwipe();
+
+                    if (!PlayerController.Instance.tapOnScreen)
+                    {
+                        secondPressPos = t.position;
+                        currentSwipe = new Vector3(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
+                        currentSwipe.Normalize();
+
+                        //up
+                        if (currentSwipe.y > 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
+                        {
+                            gameObject.transform.rotation = Quaternion.Euler(270, 0, 0);
+
+                            PlayerController.Instance.upRotation = true;
+                            PlayerController.Instance.downRotation = false;
+                            PlayerController.Instance.rightRotation = false;
+                            PlayerController.Instance.leftRotation = false;
+                        }
+
+                        //down
+                        if (currentSwipe.y < 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
+                        {
+                            gameObject.transform.rotation = Quaternion.Euler(270, 180, 0);
+
+                            PlayerController.Instance.upRotation = false;
+                            PlayerController.Instance.downRotation = true;
+                            PlayerController.Instance.rightRotation = false;
+                            PlayerController.Instance.leftRotation = false;
+                        }
+
+                        //left
+                        if (currentSwipe.x < 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
+                        {
+                            gameObject.transform.rotation = Quaternion.Euler(270, -90, 0);
+
+                            PlayerController.Instance.upRotation = false;
+                            PlayerController.Instance.downRotation = false;
+                            PlayerController.Instance.rightRotation = false;
+                            PlayerController.Instance.leftRotation = true;
+                        }
+
+                        //right
+                        if (currentSwipe.x > 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
+                        {
+                            gameObject.transform.rotation = Quaternion.Euler(270, 90, 0);
+
+                            PlayerController.Instance.upRotation = false;
+                            PlayerController.Instance.downRotation = false;
+                            PlayerController.Instance.rightRotation = true;
+                            PlayerController.Instance.leftRotation = false;
+                        }
+                    }
+                    else
+                    {
+                        if (PlayerController.Instance.isIdle)
+                            PlayerController.Instance.CanMove();
+                    }
+
+                    direction = new Vector2(0f, 0f);
+                }
             }
         }
     }

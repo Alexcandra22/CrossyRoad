@@ -12,10 +12,9 @@ GameObject:
   - component: {fileID: 3330634}
   - component: {fileID: 6584846}
   - component: {fileID: 2330580}
-  - component: {fileID: 4349313569081116630}
   m_Layer: 0
   m_Name: water
-  m_TagString: water
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 139206}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.75, z: 0}
   m_LocalScale: {x: 50, y: 1, z: 0.55}
   m_Children:
   - {fileID: 478336}
@@ -54,8 +53,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.2, z: 1}
-  m_Center: {x: 0, y: 0.1, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2330580
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -95,18 +94,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &4349313569081116630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 139206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c4f806eaa50a0246b3bd0778f4ace3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &148198
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,8 +140,8 @@ MonoBehaviour:
   startPos: {fileID: 442266}
   delayMin: 2.5
   delayMax: 4
-  speedMin: 3
-  speedMax: 5
+  speedMin: 1
+  speedMax: 3
   useSpawnPlacement: 0
   spawnCountMin: 5
   spawnCountMax: 20
@@ -209,7 +196,7 @@ MonoBehaviour:
   delayMin: 2.5
   delayMax: 5
   speedMin: 0.5
-  speedMax: 5
+  speedMax: 3
   useSpawnPlacement: 0
   spawnCountMin: 5
   spawnCountMax: 20

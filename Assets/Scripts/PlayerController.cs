@@ -9,14 +9,10 @@ public class PlayerController : MonoBehaviour
     public float moveTime = 0.4f;
     public float colliderDistCheck = 1.1f;
     public bool isIdle = true;
-
     public ParticleSystem particle = null;
     public GameObject chick = null;
     private Renderer renderer = null;
-    AudioSource[] playerSounds;
     bool isVisible = false;
-    AudioSource playerJumpSound;
-    AudioSource playerDeathSound;
 
     [HideInInspector]
     public bool downRotation, rightRotation, leftRotation, tapOnScreen, upRotation;
@@ -41,9 +37,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         renderer = chick.GetComponent<Renderer>();
-        playerSounds = gameObject.GetComponents<AudioSource>();
-        playerDeathSound = playerSounds[0];
-        playerJumpSound = playerSounds[1];
     }
 
     void Update()
@@ -61,9 +54,8 @@ public class PlayerController : MonoBehaviour
     private void CheckIfCanMove()
     {
         Physics.Raycast(this.transform.position, -chick.transform.up, out RaycastHit hit, colliderDistCheck);
-        Debug.DrawRay(this.transform.position, -chick.transform.up * colliderDistCheck, Color.red, 2);
 
-        if (hit.collider == null || (hit.collider != null && hit.collider.tag != "collider") || hit.collider.tag == "coin")
+        if (hit.collider == null || hit.collider.tag == "coin" || (hit.collider.tag != "treeSmall" && hit.collider.tag != "treeMedium" && hit.collider.tag != "treeLarge"))
             AllowedMove();
         else
             NotAllowedMove();
@@ -98,7 +90,7 @@ public class PlayerController : MonoBehaviour
     void Moving(Vector3 pos)
     {
         isIdle = false;
-        AudioManager.Instance.GetAudio(gameObject.tag).Play();
+        PlayerAudioController.Instance.GetAudioPlayerMove();
         gameObject.transform.DOMove(pos, moveTime);
     }
 
@@ -118,8 +110,8 @@ public class PlayerController : MonoBehaviour
 
     public void GetHit()
     {
-        playerDeathSound.Play();
         Manager.Instance.GameOver();
+        PlayerAudioController.Instance.GetAudioPlayerDeath();
         isDead = true;
         ParticleSystem.EmissionModule em = particle.emission;
         em.enabled = true;

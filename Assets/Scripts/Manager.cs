@@ -86,6 +86,7 @@ public class Manager : MonoBehaviour
         GameOverCheck = false;
         distance.gameObject.SetActive(true);
         setingsButton.SetActive(false);
+        startButton.SetActive(false);
         recordDistance.gameObject.SetActive(false);
     }
 
