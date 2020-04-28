@@ -16,9 +16,9 @@ public class Manager : MonoBehaviour
     public GameObject setingsButton;
     public GameObject startButton;
     public GameObject backButton;
+    public bool gameOverCheck = false;
     private int currentDistance = 0;
-    private bool Play = false;
-    private bool GameOverCheck = false;
+    private bool play = false;
     private int record;
     private int allCoins;
 
@@ -77,13 +77,13 @@ public class Manager : MonoBehaviour
 
     public bool CanPlay()
     {
-        return Play;
+        return play;
     }
 
     public void StartGame()
     {
-        Play = true;
-        GameOverCheck = false;
+        play = true;
+        gameOverCheck = false;
         distance.gameObject.SetActive(true);
         setingsButton.SetActive(false);
         startButton.SetActive(false);
@@ -114,7 +114,7 @@ public class Manager : MonoBehaviour
 
     public void GameOver()
     {
-        if (!GameOverCheck)
+        if (!gameOverCheck)
         {
             camera.GetComponent<CameraFollow>().enabled = false;
             UpdateDistanceRecord();
@@ -122,16 +122,15 @@ public class Manager : MonoBehaviour
             recordDistance.gameObject.SetActive(true);
             setingsButton.SetActive(true);
             startButton.SetActive(false);
-            GameOverCheck = true;
+            gameOverCheck = true;
             SaveCoins();
             UIGameOver();
-            AudioManager.Instance.StopAllAudio();
         }
     }
 
     public void SettingsOpen()
     {
-        if (GameOverCheck)
+        if (gameOverCheck)
             gameOverUI.SetActive(false);
         else
             startButton.SetActive(false);
@@ -144,7 +143,7 @@ public class Manager : MonoBehaviour
 
     public void BackInMenu()
     {
-        if (GameOverCheck)
+        if (gameOverCheck)
             gameOverUI.SetActive(true);
         else
             startButton.SetActive(true);

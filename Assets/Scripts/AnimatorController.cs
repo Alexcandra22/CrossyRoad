@@ -41,33 +41,29 @@ public class AnimatorController : MonoBehaviour
                 {
                     CheckTapOrSwipe();
 
-                    if (!PlayerController.Instance.tapOnScreen)
+                    secondPressPos = t.position;
+                    currentSwipe = new Vector3(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
+                    currentSwipe.Normalize();
+
+                    if (PlayerController.Instance.tapOnScreen)
                     {
-                        secondPressPos = t.position;
-                        currentSwipe = new Vector3(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
-                        currentSwipe.Normalize();
-
+                        MovePlayerUp();
+                    }
+                    else
+                    {
                         //up
-                        if (currentSwipe.y > 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
-                        {
-                            gameObject.transform.rotation = Quaternion.Euler(270, 0, 0);
+                        MovePlayerUp();
 
-                            PlayerController.Instance.upRotation = true;
-                            PlayerController.Instance.downRotation = false;
+                        //down
+                        if (currentSwipe.y < 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
+                        {
+                            gameObject.transform.rotation = Quaternion.Euler(270, 180, 0);
+
+                            PlayerController.Instance.upRotation = false;
+                            PlayerController.Instance.downRotation = true;
                             PlayerController.Instance.rightRotation = false;
                             PlayerController.Instance.leftRotation = false;
                         }
-
-                        //down
-                        //if (currentSwipe.y < 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
-                        //{
-                        //    gameObject.transform.rotation = Quaternion.Euler(270, 180, 0);
-
-                        //    PlayerController.Instance.upRotation = false;
-                        //    PlayerController.Instance.downRotation = true;
-                        //    PlayerController.Instance.rightRotation = false;
-                        //    PlayerController.Instance.leftRotation = false;
-                        //}
 
                         //left
                         if (currentSwipe.x < 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
@@ -91,16 +87,26 @@ public class AnimatorController : MonoBehaviour
                             PlayerController.Instance.leftRotation = false;
                         }
                     }
-                    else
-                    {
-                        if (PlayerController.Instance.isIdle)
-                            PlayerController.Instance.CanMove();
-                    }
+
+                    PlayerController.Instance.CheckIfCanMove();
+
+                    if (PlayerController.Instance.isIdle)
+                        PlayerController.Instance.CanMove();
 
                     direction = new Vector2(0f, 0f);
                 }
             }
         }
+    }
+
+    private void MovePlayerUp()
+    {
+        gameObject.transform.rotation = Quaternion.Euler(270, 0, 0);
+
+        PlayerController.Instance.upRotation = true;
+        PlayerController.Instance.downRotation = false;
+        PlayerController.Instance.rightRotation = false;
+        PlayerController.Instance.leftRotation = false;
     }
 
     void CheckTapOrSwipe()

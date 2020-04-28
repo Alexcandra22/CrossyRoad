@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         renderer = chick.GetComponent<Renderer>();
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (!Manager.Instance.CanPlay())
             return;
@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
         IsVisible();
     }
 
-    private void CheckIfCanMove()
+    public void CheckIfCanMove()
     {
         Physics.Raycast(this.transform.position, -chick.transform.up, out RaycastHit hit, colliderDistCheck);
 
