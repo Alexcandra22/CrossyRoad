@@ -54,9 +54,6 @@ public class PlayerController : MonoBehaviour
 
         CheckIfCanMove();
         IsVisible();
-
-        if (!GeometryUtility.TestPlanesAABB(planes, gameObject.GetComponent<Collider>().bounds))
-            GetHit();
     }
 
     void OnWillRenderObject()
