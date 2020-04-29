@@ -21,6 +21,7 @@ public class Manager : MonoBehaviour
     private bool play = false;
     private int record;
     private int allCoins;
+    private int firstStart;
 
     private static Manager instance;
     public static Manager Instance { get { return instance; } }
@@ -47,6 +48,19 @@ public class Manager : MonoBehaviour
         distance.gameObject.SetActive(true);
         GetRecord();
         GetCoins();
+    }
+
+    public bool CheckFisrtStartGame()
+    {
+        firstStart = PlayerPrefs.GetInt("firstStart");
+
+        if (firstStart == 0)
+        {
+            PlayerPrefs.SetInt("firstStart", 1);
+            return true;
+        }
+        else
+            return false;
     }
 
     public void UpdateCoinCount(int value)

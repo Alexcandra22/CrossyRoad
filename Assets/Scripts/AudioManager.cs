@@ -56,7 +56,13 @@ public class AudioManager : MonoBehaviour
 
     private void GetSoundState()
     {
-        audioListener.enabled = (PlayerPrefs.GetInt("sound") != 0);
+        if (Manager.Instance.CheckFisrtStartGame())
+        {
+            AudioListenerOn();
+        }
+        else
+            audioListener.enabled = (PlayerPrefs.GetInt("sound") != 0);
+
         SetSoundToggle(audioListener.enabled);
     }
 
