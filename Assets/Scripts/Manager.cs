@@ -176,7 +176,6 @@ public class Manager : MonoBehaviour
     public void PlayAgain()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        AudioManager.Instance.AudioListenerOn();
     }
 
     public void Quit()

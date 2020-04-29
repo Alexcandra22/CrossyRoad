@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
-    public AudioListener audioListener;
     public Toggle soundToggle;
     public AudioSource[] allAudioSources;
 
@@ -41,29 +40,27 @@ public class AudioManager : MonoBehaviour
 
     public void AudioListenerOn()
     {
-        audioListener.enabled = true;
+        AudioListener.pause = false;
     }
 
     public void AudioListenerOff()
     {
-        audioListener.enabled = false;
+        AudioListener.pause = true;
     }
 
     private void SaveSoundState()
     {
-        PlayerPrefs.SetInt("sound", (audioListener.enabled ? 1 : 0));
+        PlayerPrefs.SetInt("audio", (AudioListener.pause ? 1 : 0));
     }
 
     private void GetSoundState()
     {
         if (Manager.Instance.CheckFisrtStartGame())
-        {
             AudioListenerOn();
-        }
         else
-            audioListener.enabled = (PlayerPrefs.GetInt("sound") != 0);
-
-        SetSoundToggle(audioListener.enabled);
+            AudioListener.pause = (PlayerPrefs.GetInt("audio") != 0);
+       
+        SetSoundToggle(!AudioListener.pause);
     }
 
     private void SetSoundToggle(bool value)
@@ -71,9 +68,9 @@ public class AudioManager : MonoBehaviour
         soundToggle.isOn = value;
     }
 
-    public void CheckSound(bool checkmark)
+    public void CheckSound()
     {
-        if (checkmark)
+        if (soundToggle.isOn)
             AudioListenerOn();
         else
             AudioListenerOff();
